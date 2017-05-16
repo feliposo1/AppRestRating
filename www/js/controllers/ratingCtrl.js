@@ -1,13 +1,12 @@
 angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, restApi){
 
   $scope.restaurantes = [];
-
+  $scope.selecionado = "selecionado";
   $scope.message;
 
   var carregarRest = function() {
 		restApi.getMethod().success(function(data,status){
 			$scope.restaurantes = data;
-      console.log(data);
 		}).error(function(data, status){
 			$scope.message = 'Erro ao carregar restaurantes, pedimos desculpa pelo transtorno';
 		});
@@ -18,6 +17,22 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
   $scope.ordenarPor = function(campo) {
 		$scope.criterioDeOrdenacao = campo;
 		$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
+	}
+
+  $scope.isRestSelecionado = function(restaurante) {
+
+		return restaurante.some(function (rest) {
+			return rest.selecionado;
+		})
+
+	}
+
+  $scope.apagarRest = function(restaurantes) {
+
+		$scope.restaurantes = restaurantes.filter(function(restaurante) {
+			if (!restaurante.selecionado) return restaurante;
+		})
+
 	}
 
   $scope.status = '  ';
@@ -53,9 +68,20 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
       fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
     .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
+
+      var valoresAdicionais = {notaMedia : 0, precoMedio: 0};
+
+      for(var chave in valoresAdicionais) {
+        var valor = valoresAdicionais[chave];
+        answer[chave] = valor;
+      }
+
+      restApi.saveRest(answer).success(function(data, status){
+  			delete $scope.restaurantes;
+  			carregarRest();
+  		});
     }, function() {
-      $scope.status = 'You cancelled the dialog.';
+
     });
   };
 

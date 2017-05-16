@@ -4,13 +4,13 @@ angular.module('starter').factory('restApi', function($http, config) {
 		return $http.get(config.baseUrl + "/restaurantes");
 	};
 
-	var _saveContato = function(elemento){
+	var _saveRest = function(elemento){
 		return $http.post(config.baseUrl + "/restaurantes", elemento);
 	}
 
 	return {
 		getMethod : _getMethod,
-		saveContato : _saveContato
+		saveRest : _saveRest
 	};
 
 })

@@ -118,7 +118,7 @@
         	      </md-list>
         	    </md-content>
 
-              
+
 
       </ion-content>
 
@@ -127,9 +127,9 @@
         <!-- <div layout="row" layout-align="center center"> -->
 
         <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
-        <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
-        <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
-          <!-- <md-button flex class="md-raised md-primary" md-colors="{background: 'red-A200'}" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">apagar</md-button> -->
+        <!-- <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
+        <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button> -->
+          <md-button flex class="md-raised md-primary" md-colors="{background: 'red-A200'}" ng-click="apagarRest(restaurantes)" ng-if="isRestSelecionado(restaurantes)">apagar</md-button>
 
         <!-- </div> -->
 

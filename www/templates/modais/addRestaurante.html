@@ -1,11 +1,48 @@
+<md-dialog>
+
 <header class="headerApp">
       Adicione seu restaurante
   </header>
 
+  <form name="addRestForm">
+
+
   <div layout-gt-sm="column" >
           <md-input-container class="md-block" flex-gt-sm >
             <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
-            <input style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Nome" ng-model="user.firstName">
+            <input style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Nome"
+            name="nome" ng-model="rest.nome" ng-required="true">
+
+            <div ng-messages="addRestForm.nome.$error"  style="margin:0; padding: 0; text-align:center; background-color: white;">
+
+      				<!-- alerta de erro nome -->
+      				<div class="md-block" ng-message="required" ng-if="addRestForm.nome.$dirty">
+      					Por favor, preencha o campo nome!
+      				</div>
+
+      			</div>
+
+          </md-input-container>
+          <!-- container de mensagens de erro -->
+
+
+        </div>
+
+
+
+  <div layout-gt-sm="column" >
+          <md-input-container class="md-block" flex-gt-sm >
+            <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
+            <input ng-required="true" name="endereco" style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Endereço" ng-model="rest.endereco">
+
+            <div ng-messages="addRestForm.endereco.$error"  style="margin:0; padding: 0; text-align:center; background-color: white;">
+
+      				<!-- alerta de erro nome -->
+      				<div class="md-block" ng-message="required" ng-if="addRestForm.endereco.$dirty">
+      					Por favor, preencha o campo endereço!
+      				</div>
+
+      			</div>
 
           </md-input-container>
         </div>
@@ -13,22 +50,27 @@
   <div layout-gt-sm="column" >
           <md-input-container class="md-block" flex-gt-sm >
             <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
-            <input style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Endereço" ng-model="user.firstName">
+            <input ng-required="true" style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Especialidade" ng-model="rest.especialidade" name="especialidade">
+
+            <div ng-messages="addRestForm.especialidade.$error"  style="margin:0; padding: 0; text-align:center; background-color: white;">
+
+      				<!-- alerta de erro nome -->
+      				<div class="md-block" ng-message="required" ng-if="addRestForm.especialidade.$dirty">
+      					Por favor, preencha o campo especialidade!
+      				</div>
+
+      			</div>
 
           </md-input-container>
         </div>
 
-  <div layout-gt-sm="column" >
-          <md-input-container class="md-block" flex-gt-sm >
-            <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
-            <input style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Especialidade" ng-model="user.firstName">
-
-          </md-input-container>
-        </div>
+        </form>
 
   <div layout-gt-sm="row" layout="row" style="margin-top: -20px;">
 
-          <md-button flex class="md-raised" ng-click="answer('not useful')">Confirmar</md-button>
+          <md-button ng-disabled="addRestForm.$invalid" flex class="md-raised" ng-click="answer(rest)">Confirmar</md-button>
           <md-button flex class="md-raised" ng-click="cancel()">Cancelar</md-button>
 
         </div>
+
+      </md-dialog>
