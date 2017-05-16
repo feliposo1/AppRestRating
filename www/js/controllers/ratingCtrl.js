@@ -6,7 +6,7 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog){
   $scope.showAdvanced = function(ev) {
     $mdDialog.show({
       controller: DialogController,
-      templateUrl: '../templates/modais/addRestaurante.html',
+      templateUrl: '../templates/modais/addNota.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
