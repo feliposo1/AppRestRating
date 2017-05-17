@@ -2,13 +2,19 @@
       De sua nota
   </header>
 
-  <div style="margin-top: 30px; margin-bottom: 40px;padding: 15px;">
+  <div style="margin-top: 30px; margin-bottom: 40px;padding: 15px">
+    <div class="" style="text-align:center">
+        De [1 a 100]
+    </div>
+    <br>
     <md-slider ng-model="disabled3" step="1" md-discrete aria-label="red" id="red-slider"></md-slider>
   </div>
 
 
 
   <div layout-gt-sm="row" layout="row" style="margin-top: -20px;">
+
+
 
           <md-button flex class="md-raised" ng-click="answer('not useful')">Confirmar</md-button>
           <md-button flex class="md-raised" ng-click="cancel()">Cancelar</md-button>

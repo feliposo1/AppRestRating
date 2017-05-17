@@ -1,0 +1,84 @@
+<ion-pane>
+
+
+  <ion-view view-title="REST-RATING">
+    <ion-nav-bar class="headerApp">
+
+      <ion-nav-back-button></ion-nav-back-button>
+
+    </ion-nav-bar>
+    <ion-content>
+
+
+
+      <div layout-gt-sm="column" style="margin-top:0px;">
+        <md-input-container class="md-block" flex-gt-sm >
+          <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
+          <input name="criterioDeBusca" ng-model="criterioDeBusca" style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="buscar" ng-model="user.firstName">
+          <md-icon class="ion-android-restaurant" style="display:inline-block; font-size: 30px;"></md-icon>
+
+        </md-input-container>
+      </div>
+
+      <div layout-gt-sm="row" layout="row" style="margin-top: -20px;">
+
+        <md-button flex class="md-raised" ng-click="ordenarPor('precoMedio')">Preço</md-button>
+        <div class="ion-chevron-down" style="font-size: 40px; color: #444">
+
+        </div>
+        <md-button flex class="md-raised" ng-click="ordenarPor('notaMedia')">Nota</md-button>
+
+      </div>
+
+      <md-content>
+
+            <!-- iniciando a lista -->
+              <md-list flex>
+                <!-- iniciando um item e fazendo um loop para exibição dos objetos contatos-->
+
+                <md-list-item href="#/detalhes/{{rest.id}}" class="md-3-line" ng-click="null" ng-repeat="rest in restaurantes | limitTo: 20 | filter:{nome: criterioDeBusca} | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao ">
+
+                <!-- container com o alinhamento horizontal -->
+                  <div class="md-list-item-text" layout="row" layout-align="space-between center">
+
+                  <!-- checkbox -->
+
+
+                   <!-- dados do contato -->
+                   <div layout="column">
+                      <h4>Nome: {{rest.nome}}</h4>
+                      <h4>Preço médio: {{rest.precoMedio}}</h4>
+                      <h4>Nota: {{rest.notaMedia}}</h4>
+                   </div>
+
+                   <md-checkbox class="md-primary" ng-model="rest.selecionado">
+
+                   </md-checkbox>
+
+                  </div>
+                </md-list-item>
+
+                <!-- divisor -->
+
+                <md-divider></md-divider>
+              </md-list>
+            </md-content>
+
+
+
+          </ion-content>
+      </ion-view>
+      <ion-footer-bar layout="row" style="padding: 0;" style="background-color: white">
+
+      <!-- <div layout="row" layout-align="center center"> -->
+
+      <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
+      <!-- <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
+      <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button> -->
+      <md-button flex class="md-raised md-primary" md-colors="{background: 'red-A200'}" ng-click="apagarRest(restaurantes)" ng-if="isRestSelecionado(restaurantes)">apagar</md-button>
+
+      <!-- </div> -->
+
+      </ion-footer-bar>
+
+</ion-pane>

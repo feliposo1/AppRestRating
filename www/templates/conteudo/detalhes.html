@@ -1,0 +1,60 @@
+<ion-pane>
+
+
+  <ion-view view-title="Restaurante {{dados.nome}}">
+
+
+
+
+
+  <ion-nav-bar class="headerApp">
+
+    <ion-nav-back-button></ion-nav-back-button>
+
+  </ion-nav-bar>
+
+  <md-content>
+
+        <!-- iniciando a lista -->
+          <md-list flex>
+            <!-- iniciando um item e fazendo um loop para exibição dos objetos contatos-->
+
+            <md-list-item class="md-3-line" ng-click="null">
+
+            <!-- container com o alinhamento horizontal -->
+              <div class="md-list-item-text" layout="row" layout-align="center center" style="margin-top: 40px;">
+
+              <!-- checkbox -->
+
+
+               <!-- dados do contato -->
+               <div layout="column" layout-align="center center">
+                  <h2>Nome: {{dados.nome}}</h2>
+                  <h3>Endereço: {{dados.endereco}}</h3>
+                  <h3>especialidade: {{dados.especialidade}}</h3>
+                  <h3>Nota: {{dados.notaMedia}}</h3>
+                  <h3>Preço médio: {{dados.precoMedio}}</h3>
+               </div>
+
+              </div>
+            </md-list-item>
+
+            <!-- divisor -->
+
+            <md-divider></md-divider>
+          </md-list>
+        </md-content>
+
+
+  </ion-view>
+
+  <ion-footer-bar layout="column" style="padding: 0;height: 110px;" style="background-color: white">
+
+    <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Avaliar</md-button>
+
+  <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Registrar despesas</md-button>
+
+
+  </ion-footer-bar>
+
+</ion-pane>

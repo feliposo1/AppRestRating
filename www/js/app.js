@@ -22,3 +22,25 @@ angular.module('starter', ['ionic','ngMaterial', 'ngMessages','material.svgAsset
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/home')
+
+  $stateProvider
+
+  .state('home', {
+
+    url: '/home',
+    templateUrl: 'templates/home/home.html'
+
+  })
+
+  .state('detalhes', {
+
+    url: '/detalhes/:resId',
+    templateUrl: 'templates/conteudo/detalhes.html',
+    controller: 'detalhesCtrl'
+
+  })
+
+})
