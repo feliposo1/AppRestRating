@@ -1,3 +1,3 @@
 angular.module('starter').value('config', {
-	baseUrl : 'https://b8709fa8.ngrok.io'
+	baseUrl : 'http://localhost:3412'
 });
