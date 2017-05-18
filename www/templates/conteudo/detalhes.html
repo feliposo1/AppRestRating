@@ -1,6 +1,5 @@
 <ion-pane>
 
-
   <ion-view view-title="Restaurante {{dados.nome}}">
 
 
@@ -32,8 +31,8 @@
                   <h2>Nome: {{dados.nome}}</h2>
                   <h3>Endereço: {{dados.endereco}}</h3>
                   <h3>especialidade: {{dados.especialidade}}</h3>
-                  <h3>Nota: {{dados.notaMedia}}</h3>
-                  <h3>Preço médio: {{dados.precoMedio}}</h3>
+                  <h3>Nota: {{dados.notaMedia | addponto}}</h3>
+                  <h3>Preço médio: R$ {{dados.precoMedio}}</h3>
                </div>
 
               </div>
@@ -50,9 +49,9 @@
 
   <ion-footer-bar layout="column" style="padding: 0;height: 110px;" style="background-color: white">
 
-    <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Avaliar</md-button>
+    <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvancedNota($event)" ng-disabled="contatoForm.$invalid">Avaliar</md-button>
 
-  <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Registrar despesas</md-button>
+  <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvancedMedia($event)" ng-disabled="contatoForm.$invalid">Registrar despesas</md-button>
 
 
   </ion-footer-bar>

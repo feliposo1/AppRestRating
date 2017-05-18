@@ -6,9 +6,9 @@ app.use(express.static(__dirname + '/www'));
 app.use(bodyParser());
 
 var restaurantes = [
-	{id: 0, nome: "Moinho", precoMedio: "22.00", notaMedia: 8.7, endereco: "Rua itupava", especialidade: 'Massas'},
-	{id: 1, nome: "Serra Azul", precoMedio: "20.00", notaMedia: 9.2, endereco: "Rua itupava", especialidade: 'Massas'},
-	{id: 2, nome: "Dona Helena", precoMedio: "25.00", notaMedia: 2.3, endereco: "Rua itupava", especialidade: 'Massas'}
+	{id: 0, nome: "Moinho", precoMedio: "22", notaMedia: "87", endereco: "Rua itupava", especialidade: 'Massas'},
+	{id: 1, nome: "Serra Azul", precoMedio: "20", notaMedia: "92", endereco: "Rua itupava", especialidade: 'Massas'},
+	{id: 2, nome: "Dona Helena", precoMedio: "25", notaMedia: "23", endereco: "Rua itupava", especialidade: 'Massas'}
 ];
 
 var porta = 3412;
@@ -45,8 +45,99 @@ app.get('/restaurantes/:id', function(req, res) {
 
 });
 
+app.delete('/restaurantes/:id', function(req, res){
+
+	var idRes = req.params.id;
+
+	for (var i = 0; i < restaurantes.length; i++) {
+		if (restaurantes[i].id == idRes) {
+				restaurantes.splice(i, 1);
+		}
+	}
+
+	res.json(restaurantes);
+
+});
+
+app.put('/restaurantes', function(req, res){
+
+	var objs = req.body;
+
+	if (objs.metodoUp == 'precoMedio') {
+
+		for (var i = 0; i < restaurantes.length; i++) {
+			if (restaurantes[i].id == objs.idUp) {
+
+				var precoAtual = restaurantes[i].precoMedio.replace(/[^0-9]+/g, '');
+				var acresPreco = objs.valorUp.replace(/[^0-9]+/g, '');
+
+				if (precoAtual != 0) {
+				var media = (parseInt(precoAtual) + parseInt(acresPreco)) / 2;
+			}else{
+				var media = acresPreco;
+			}
+				restaurantes[i].precoMedio = media.toString().split('.')[0];
+
+			}
+		}
+	}
+
+		if (objs.metodoUp == 'notaMedia') {
+
+			for (var i = 0; i < restaurantes.length; i++) {
+
+				if (restaurantes[i].id == objs.idUp) {
+
+					if (objs.valorUp == 10) {
+						objs.valorUp = 100;
+					}
+
+					var notaAtual = restaurantes[i].notaMedia.replace(/[^0-9]+/g, '');
+					var acresNota = objs.valorUp.toString().replace(/[^0-9]+/g, '');
+
+					if (notaAtual != 0) {
+						var media = (parseInt(notaAtual) + parseInt(acresNota)) / 2;
+					}else{
+						var media = acresNota;
+					}
+
+					restaurantes[i].notaMedia = media.toString().split('.')[0];
+
+				}
+			}
+		}
+
+		res.json(restaurantes);
+
+
+	// if (objs.metodoUp == 'notaMedia') {
+	//
+	// }
+
+});
+
 app.post('/restaurantes', function(req, res) {
-  restaurantes.push(req.body);
+	var objs = req.body;
+
+	for (var i = 0; i < restaurantes.length; i++) {
+
+		if (restaurantes[i].id > 0) {
+
+			if (restaurantes[i].id > restaurantes[i-1].id) {
+					var idM = restaurantes[i].id;
+			}
+
+		}
+
+	}
+
+	if (typeof idM != "undefined") {
+		objs.id = idM + 1;
+	}else{
+		objs.id = 0;
+	}
+
+  restaurantes.push(objs);
   res.json(true);
 });
 

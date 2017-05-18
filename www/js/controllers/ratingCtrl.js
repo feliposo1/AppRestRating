@@ -7,6 +7,11 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
   var carregarRest = function() {
 		restApi.getMethod().success(function(data,status){
 			$scope.restaurantes = data;
+
+      $(function() {
+        $('#valorGasto').maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', affixesStay: true});
+      })
+
 		}).error(function(data, status){
 			$scope.message = 'Erro ao carregar restaurantes, pedimos desculpa pelo transtorno';
 		});
@@ -30,10 +35,15 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
   $scope.apagarRest = function(restaurantes) {
 
 		$scope.restaurantes = restaurantes.filter(function(restaurante) {
-			if (!restaurante.selecionado) return restaurante;
-		})
+			if (!restaurante.selecionado) {return restaurante } else {
+        restApi.delId(restaurante.id).success(function(value){
+          console.log(value);
+			  })
+		}
 
-	}
+	})
+
+}
 
   $scope.status = '  ';
   $scope.customFullscreen = false;
@@ -69,7 +79,7 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
     })
     .then(function(answer) {
 
-      var valoresAdicionais = {notaMedia : 0, precoMedio: 0};
+      var valoresAdicionais = {notaMedia : '0', precoMedio: '0'};
 
       for(var chave in valoresAdicionais) {
         var valor = valoresAdicionais[chave];
@@ -82,38 +92,6 @@ angular.module('starter').controller('ratingCtrl', function($scope, $mdDialog, r
   		});
     }, function() {
 
-    });
-  };
-
-  $scope.showAdvanced2 = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: './templates/modais/addGasto.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-  };
-
-  $scope.showAdvanced3 = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: './templates/modais/addNota.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
     });
   };
 

@@ -48,7 +48,7 @@
                    <div layout="column">
                       <h4>Nome: {{rest.nome}}</h4>
                       <h4>Preço médio: {{rest.precoMedio}}</h4>
-                      <h4>Nota: {{rest.notaMedia}}</h4>
+                      <h4>Nota: {{rest.notaMedia | addponto}}</h4>
                    </div>
 
                    <md-checkbox class="md-primary" ng-model="rest.selecionado">
@@ -73,8 +73,6 @@
       <!-- <div layout="row" layout-align="center center"> -->
 
       <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
-      <!-- <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced2($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button>
-      <md-button flex class="md-raised md-primary" md-colors="{background: 'green'}" ng-click="showAdvanced3($event)" ng-disabled="contatoForm.$invalid">Adicionar Restaurante</md-button> -->
       <md-button flex class="md-raised md-primary" md-colors="{background: 'red-A200'}" ng-click="apagarRest(restaurantes)" ng-if="isRestSelecionado(restaurantes)">apagar</md-button>
 
       <!-- </div> -->

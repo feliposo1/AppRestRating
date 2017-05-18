@@ -2,20 +2,24 @@
       Quanto gastou?
   </header>
 
+  <form name="addGastoForm" >
+
   <div layout-gt-sm="column" >
           <md-input-container class="md-block" flex-gt-sm >
+
             <label style="color: #444; font-size: 20px; margin-top: 20px;"></label>
-            <input style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Valor" ng-model="user.firstName">
+            <input id="valorGasto" style="font-size: 20px;margin-top: 10px-; text-align: center" placeholder="Valor" ng-model="rest.gasto" ng-required="true" value="{{gasto | currency:' R$'}}">
 
           </md-input-container>
   </div>
 
+  </form>
 
 
 
   <div layout-gt-sm="row" layout="row" style="margin-top: -20px;">
 
-          <md-button flex class="md-raised" ng-click="answer('not useful')">Confirmar</md-button>
+          <md-button flex class="md-raised" ng-click="answer(rest)" ng-disabled="addGastoForm.$invalid">Confirmar</md-button>
           <md-button flex class="md-raised" ng-click="cancel()">Cancelar</md-button>
 
   </div>
